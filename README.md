@@ -32,7 +32,7 @@
 * Spring
 * Hibernate
 * Mysql
+* Thymeleaf
 
 ## Team
 * Domagoj Kasalo
-* Tino Dragojević
