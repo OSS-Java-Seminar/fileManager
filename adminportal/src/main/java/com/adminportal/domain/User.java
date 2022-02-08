@@ -106,8 +106,6 @@ public class User implements UserDetails{
 		this.userRoles = userRoles;
 	}
 	
-	
-	
 	public List<UserShipping> getUserShippingList() {
 		return userShippingList;
 	}

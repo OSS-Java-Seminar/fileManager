@@ -84,19 +84,19 @@
 						<div class="col-md-8">
 							<select th:value="${book.category}" id="category" name="category"
 								class="form-control">
-								<option value="" selected="selected" disabled="disabled">Please
-									select an option...</option>
 								<option value="Management"
 									th:selected="(${book.category}=='Management')">Management</option>
-								<option value="Fiction"
-									th:selected="(${book.category}=='Fiction')">Fiction</option>
-								<option value="Engineering"
-									th:selected="(${book.category}=='Engineering')">Engineering</option>
+								<option value="Classic"
+									th:selected="(${book.category}=='Classics')">Classics</option>
+								<option value="Self-help"
+									th:selected="(${book.category}=='Self-help')">Self-help</option>
 								<option value="Programming"
 									th:selected="(${book.category}=='Programming')">Programming</option>
 								<option value="Arts &amp; Literature"
 									th:selected="(${book.category}=='Arts &amp; Literature')">Arts
 									&amp; Literature</option>
+								<option value="Poetry"
+									th:selected="(${book.category}=='Poetry')">Poetry</option>
 							</select>
 						</div>
 					</div>
@@ -196,8 +196,8 @@
 						<label class="col-md-2 control-label" for="status">Status</label>
 						<div class="col-md-8">
 							<label><input value="true" type="radio" name="active"
-								checked="checked" /> Active </label> <label><input
-								value="false" type="radio" name="active" />
+								th:checked="${book.active}" /> Active </label> <label><input
+								value="false" type="radio" name="active" th:checked="${!book.active}"/>
 								Inactive </label> <span class="help-block">Whether the book is
 								active or inactive</span>
 						</div>

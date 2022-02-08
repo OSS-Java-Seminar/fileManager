@@ -16,12 +16,11 @@
 				</h2>
 			</div>
 			<div class="col-xs-4">
-				<img src="/image/logo.png" class="img-responsive" />
+				<img src="/image/lo.png" class="img-responsive" style="width: 80%;"/>
 			</div>
 		</div>
-		<hr style="position: absolute; width:85%; height: 6px; background-color: #333; z-index: -1; margin-top: -80px;" />
-		<img class="img-responsive" src="/image/wood.png"
-			style="margin-top: -75px;" />
+		<hr style="position: absolute; width:85%; height: 6px; background-color: #333; z-index: -1; margin-top: -170px;" />
+		<hr style="width:120%;text-align:left;margin-left:0">
 
 		<div class="row" style="margin-top: 10px;">
 			<div class="col-xs-12">
@@ -55,8 +54,7 @@
 						</div>
 					</div>
 
-					<!--**************** display products in cart ****************-->
-
+					<!-- display products in cart -->
 					<div class="row" th:each="cartItem : ${cartItemList}">
 						<form th:action="@{/shoppingCart/updateCartItem}" method="post">
 							<hr />
@@ -115,7 +113,8 @@
 			</div>
 		</div>
 	</div>
-	<!-- end of container -->
+	
+	<div th:replace="common/header :: footer"/>
 
 
 	<div th:replace="common/header :: body-bottom-scripts" />
