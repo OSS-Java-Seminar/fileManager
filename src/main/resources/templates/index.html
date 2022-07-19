@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-        <title>Spring Boot File Upload / Download Rest API Example</title>
+        <title>File Manager Application</title>
         <link rel="stylesheet" href="/css/main.css" />
     </head>
     <body>
@@ -15,7 +15,7 @@
 			   	Welcome <span sec:authentication="principal.username">User</span>
 			  </p>
                 <h2>Upload files: </h2>
-                <h2><a href="#">List all files</a></h2>
+                <h2><a th:href="@{/listFiles}">List all files</a></h2>
                 <h2 sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></h2>
             </div>
             <div class="upload-content">

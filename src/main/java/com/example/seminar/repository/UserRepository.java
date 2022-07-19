@@ -8,4 +8,7 @@ import com.example.seminar.model.User;
 @Repository
 public interface UserRepository extends JpaRepository < User, Long > {
     User findByEmail(String email);
+    
+    User findByFirstName(String firstName);
+    
 }

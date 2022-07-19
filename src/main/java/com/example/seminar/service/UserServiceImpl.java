@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import com.example.seminar.model.Role;
 import com.example.seminar.model.User;
 import com.example.seminar.repository.UserRepository;
-import com.example.seminar.web.dto.UserRegistrationDto;
+import com.example.seminar.controller.dto.UserRegistrationDto;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -30,11 +30,11 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByEmail(email);
     }
     
-    public User findByName(String name) {
-    	
-    	return userRepository.findByEmail(name);
+    @Override
+	public User findByFirstName(String firstName) {
+		return userRepository.findByFirstName(firstName);
 	}
-
+    
     public User save(UserRegistrationDto registration) {
         User user = new User();
         user.setFirstName(registration.getFirstName());

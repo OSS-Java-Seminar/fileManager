@@ -8,98 +8,130 @@ import java.util.Set;
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+	 @Id
+	    @GeneratedValue(strategy = GenerationType.AUTO)
+	    private Long id;
 
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String password;
+	    private String firstName;
+	    private String lastName;
+	    private String email;
+	    private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(
-        name = "users_roles",
-        joinColumns = @JoinColumn(
-            name = "user_id", referencedColumnName = "id"),
-        inverseJoinColumns = @JoinColumn(
-            name = "role_id", referencedColumnName = "id"))
-    private Collection < Role > roles;
-    
-    public User() {}
+	    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	    @JoinTable(
+	        name = "users_roles",
+	        joinColumns = @JoinColumn(
+	            name = "user_id", referencedColumnName = "id"),
+	        inverseJoinColumns = @JoinColumn(
+	            name = "role_id", referencedColumnName = "id"))
+	    private Collection < Role > roles;
+	    
+	    //dodano
+	    @OneToMany(mappedBy="user")
+	    private Set<DBFile> files;
+	    
+	    @Override
+		public String toString() {
+			return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+					+ ", password=" + password + ", roles=" + roles + ", files=" + files + "]";
+		}
 
-    public User(String firstName, String lastName, String email, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-    }
+		public User(Long id, String firstName, String lastName, String email, String password, Collection<Role> roles,
+				Set<DBFile> files) {
+			super();
+			this.id = id;
+			this.firstName = firstName;
+			this.lastName = lastName;
+			this.email = email;
+			this.password = password;
+			this.roles = roles;
+			this.files = files;
+		}
 
-    public User(String firstName, String lastName, String email, String password, Collection < Role > roles) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-        this.roles = roles;
-    }
+		public Set<DBFile> getFiles() {
+			return files;
+		}
 
-    public Long getId() {
-        return id;
-    }
+		public void setFiles(Set<DBFile> files) {
+			this.files = files;
+		}
+		
+		// do ovdje
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+		public User() {}
 
-    public String getFirstName() {
-        return firstName;
-    }
+	    public User(String firstName, String lastName, String email, String password) {
+	        this.firstName = firstName;
+	        this.lastName = lastName;
+	        this.email = email;
+	        this.password = password;
+	    }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+	    public User(String firstName, String lastName, String email, String password, Collection < Role > roles) {
+	        this.firstName = firstName;
+	        this.lastName = lastName;
+	        this.email = email;
+	        this.password = password;
+	        this.roles = roles;
+	    }
 
-    public String getLastName() {
-        return lastName;
-    }
+	    public Long getId() {
+	        return id;
+	    }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+	    public void setId(Long id) {
+	        this.id = id;
+	    }
 
-    public String getEmail() {
-        return email;
-    }
+	    public String getFirstName() {
+	        return firstName;
+	    }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	    public void setFirstName(String firstName) {
+	        this.firstName = firstName;
+	    }
 
-    public String getPassword() {
-        return password;
-    }
+	    public String getLastName() {
+	        return lastName;
+	    }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	    public void setLastName(String lastName) {
+	        this.lastName = lastName;
+	    }
 
-    public Collection < Role > getRoles() {
-        return roles;
-    }
+	    public String getEmail() {
+	        return email;
+	    }
 
-    public void setRoles(Collection < Role > roles) {
-        this.roles = roles;
-    }
+	    public void setEmail(String email) {
+	        this.email = email;
+	    }
 
-    @Override
-    public String toString() {
-        return "User{" +
-            "id=" + id +
-            ", firstName='" + firstName + '\'' +
-            ", lastName='" + lastName + '\'' +
-            ", email='" + email + '\'' +
-            ", password='" + "*********" + '\'' +
-            ", roles=" + roles +
-            '}';
-    }
+	    public String getPassword() {
+	        return password;
+	    }
+
+	    public void setPassword(String password) {
+	        this.password = password;
+	    }
+
+	    public Collection < Role > getRoles() {
+	        return roles;
+	    }
+
+	    public void setRoles(Collection < Role > roles) {
+	        this.roles = roles;
+	    }
+/*
+	    @Override
+	    public String toString() {
+	        return "User{" +
+	            "id=" + id +
+	            ", firstName='" + firstName + '\'' +
+	            ", lastName='" + lastName + '\'' +
+	            ", email='" + email + '\'' +
+	            ", password='" + "*********" + '\'' +
+	            ", roles=" + roles +
+	            '}';
+	    }*/
 }

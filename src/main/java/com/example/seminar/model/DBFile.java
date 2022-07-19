@@ -1,63 +1,97 @@
 package com.example.seminar.model;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
+import java.util.Arrays;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "files")
 public class DBFile {
-    @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
-    private String id;
+	 @Id
+	    @GeneratedValue(generator = "uuid")
+	    @GenericGenerator(name = "uuid", strategy = "uuid2")
+	    private String id;
 
-    private String fileName;
+	    private String fileName;
 
-    private String fileType;
+	    private String fileType;
 
-    @Lob
-    private byte[] data;
+	    @Lob
+	    private byte[] data;
+	    
+	    // dodano
+	    @ManyToOne
+	    @JoinColumn(name="user_id", nullable=false)
+	    private User user;
 
-    public DBFile() {
 
-    }
+	    @Override
+		public String toString() {
+			return "DBFile [id=" + id + ", fileName=" + fileName + ", fileType=" + fileType + ", data="
+					+ Arrays.toString(data) + ", user=" + user + "]";
+		}
 
-    public DBFile(String fileName, String fileType, byte[] data) {
-        this.fileName = fileName;
-        this.fileType = fileType;
-        this.data = data;
-    }
+		public DBFile(String fileName, String fileType, byte[] data, User user) {
+			this.fileName = fileName;
+			this.fileType = fileType;
+			this.data = data;
+			this.user = user;
+		}
 
-    public String getId() {
-        return id;
-    }
+		public User getUser() {
+			return user;
+		}
 
-    public void setId(String id) {
-        this.id = id;
-    }
+		public void setUser(User user) {
+			this.user = user;
+		
+		}
+		
+		// do ovdje
 
-    public String getFileName() {
-        return fileName;
-    }
+		public DBFile() {
 
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
+	    }
+	    
+		public DBFile(String fileName, String fileType, byte[] data) {
+	        this.fileName = fileName;
+	        this.fileType = fileType;
+	        this.data = data;
+	    }
 
-    public String getFileType() {
-        return fileType;
-    }
+	    public String getId() {
+	        return id;
+	    }
 
-    public void setFileType(String fileType) {
-        this.fileType = fileType;
-    }
+	    public void setId(String id) {
+	        this.id = id;
+	    }
 
-    public byte[] getData() {
-        return data;
-    }
+	    public String getFileName() {
+	        return fileName;
+	    }
 
-    public void setData(byte[] data) {
-        this.data = data;
-    }
+	    public void setFileName(String fileName) {
+	        this.fileName = fileName;
+	    }
+
+	    public String getFileType() {
+	        return fileType;
+	    }
+
+	    public void setFileType(String fileType) {
+	        this.fileType = fileType;
+	    }
+
+	    public byte[] getData() {
+	        return data;
+	    }
+
+	    public void setData(byte[] data) {
+	        this.data = data;
+	    }
 }
